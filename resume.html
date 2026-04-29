@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mlamuli Sibandze – Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    /* ── EDIT YOUR DETAILS IN THE <body> SECTION BELOW ── */
+
+    :root {
+      --accent:    #1a9ba1;
+      --accent2:   #0d6e73;
+      --dark:      #1a1a2e;
+      --mid:       #555;
+      --light:     #888;
+      --rule:      #e0e0e0;
+      --bg:        #f7f7f5;
+      --card:      #ffffff;
+      --tag-bg:    #f0f0ee;
+      --page-w:    860px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.55;
+    }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      body { background: white; }
+      .page { box-shadow: none; margin: 0; border-radius: 0; }
+      .no-print { display: none; }
+    }
+
+    /* ── TOOLBAR ── */
+    .toolbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 48px;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 0 24px;
+      z-index: 100;
+      font-size: 13px;
+    }
+    .toolbar span { color: #aaa; }
+    .toolbar button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .toolbar button:hover { background: var(--accent2); }
+
+    /* ── PAGE WRAPPER ── */
+    .outer {
+      padding: 68px 20px 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .page {
+      width: 100%;
+      max-width: var(--page-w);
+      background: var(--card);
+      border-radius: 4px;
+      box-shadow: 0 4px 32px rgba(0,0,0,.10);
+      overflow: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 42px 48px 32px;
+      border-bottom: 3px solid var(--accent);
+    }
+    .header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: -.5px;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .header .tagline {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .header .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--mid);
+    }
+    .header .contact a { color: var(--mid); text-decoration: none; }
+    .header .contact a:hover { color: var(--accent); }
+    .contact-item { display: flex; align-items: center; gap: 5px; }
+    .contact-item svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── TWO-COLUMN BODY ── */
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 0;
+    }
+
+    /* ── LEFT ── */
+    .left {
+      padding: 36px 36px 36px 48px;
+      border-right: 1px solid var(--rule);
+    }
+
+    /* ── RIGHT ── */
+    .right {
+      padding: 36px 36px 36px 32px;
+      background: #fafaf8;
+    }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 30px; }
+    .section:last-child { margin-bottom: 0; }
+
+    .section-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--light);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 16px;
+    }
+
+    /* ── SUMMARY ── */
+    .summary p {
+      font-size: 13.5px;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    /* ── EXPERIENCE ── */
+    .job { margin-bottom: 22px; }
+    .job:last-child { margin-bottom: 0; }
+    .job-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .job-meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 12.5px;
+      color: var(--light);
+      margin: 3px 0 8px;
+      flex-wrap: wrap;
+    }
+    .job-org { color: var(--accent); font-weight: 500; }
+    .job-meta .sep { color: var(--rule); }
+    .job ul {
+      padding-left: 16px;
+      list-style: none;
+    }
+    .job ul li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 5px;
+      line-height: 1.6;
+    }
+    .job ul li::before {
+      content: "›";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── COURSES ── */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .course-item {
+      background: var(--tag-bg);
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+    .course-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+    .course-meta {
+      font-size: 11.5px;
+      color: var(--light);
+    }
+
+    /* ── STRENGTHS ── */
+    .strength { margin-bottom: 14px; }
+    .strength-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+    .strength-icon {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+    .strength p {
+      font-size: 12.5px;
+      color: var(--light);
+      padding-left: 30px;
+      line-height: 1.6;
+    }
+
+    /* ── RIGHT: EDUCATION ── */
+    .edu-item { margin-bottom: 16px; }
+    .edu-degree {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .edu-school { color: var(--accent); font-size: 12.5px; font-weight: 500; margin: 3px 0 2px; }
+    .edu-meta { font-size: 11.5px; color: var(--light); }
+
+    /* ── RIGHT: SCHOLARSHIP ── */
+    .award-name { font-size: 13.5px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+    .award-body { font-size: 12px; color: var(--mid); margin: 5px 0; line-height: 1.6; }
+    .award-ref  { font-size: 11px; color: var(--light); }
+
+    /* ── RIGHT: LANGUAGES ── */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .lang-name { font-size: 13px; font-weight: 500; color: var(--dark); }
+    .lang-level {
+      font-size: 11.5px;
+      color: var(--light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .dots { display: flex; gap: 3px; }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+    }
+    .dot.filled  { background: var(--accent); }
+    .dot.empty   { background: var(--rule); }
+
+    /* ── RIGHT: SKILLS ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .skill-tag {
+      background: var(--tag-bg);
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    /* ── RIGHT: INTERESTS ── */
+    .interest { margin-bottom: 12px; }
+    .interest-title { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+    .interest p { font-size: 12px; color: var(--light); line-height: 1.5; }
+  </style>
+</head>
+<body>
+
+  <!-- ───────────── PRINT TOOLBAR ───────────── -->
+  <div class="toolbar no-print">
+    <span>Open in VSCode → edit the content below → save → refresh browser</span>
+    <button onclick="window.print()">🖨 Print / Save as PDF</button>
+  </div>
+
+  <div class="outer">
+    <div class="page">
+
+      <!-- ═══════════════════════════════════════
+           HEADER  — edit name, tagline, contacts
+      ═══════════════════════════════════════ -->
+      <div class="header">
+        <h1>Mlamuli Sandziso Sibandze</h1>
+        <div class="tagline">IT Student &nbsp;|&nbsp; Software Development &nbsp;|&nbsp; Information Technology</div>
+        <div class="contact">
+          <div class="contact-item">
+            <!-- Phone -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.75 2.18 2 2 0 012.73 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l.91-.91a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            +268 XXXX XXXX  <!-- ← edit your phone number -->
+          </div>
+          <div class="contact-item">
+            <!-- Email -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:202305050@student.uniswa.sz">202305050@student.uniswa.sz</a>  <!-- ← edit your email -->
+          </div>
+          <div class="contact-item">
+            <!-- LinkedIn -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <a href="#">linkedin.com/in/mlamuli-sibandze</a>  <!-- ← edit your LinkedIn -->
+          </div>
+          <div class="contact-item">
+            <!-- Location -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Kwaluseni, Eswatini  <!-- ← edit your location -->
+          </div>
+        </div>
+      </div><!-- /header -->
+
+
+      <div class="body">
+
+        <!-- ════════════════════════════════
+             LEFT COLUMN
+        ════════════════════════════════ -->
+        <div class="left">
+
+          <!-- ── SUMMARY ── -->
+          <div class="section summary">
+            <div class="section-title">Summary</div>
+            <!-- ↓ Edit your summary paragraph -->
+            <p>
+              Motivated B.Sc. Information Technology student at the University of Eswatini with a strong foundation in programming and systems analysis. Passionate about building innovative software solutions and leveraging technology to address real-world problems. Recipient of the Eswatini Government Pre-Service Tertiary Education Scholarship, demonstrating academic merit and commitment to excellence.
+            </p>
+          </div>
+
+          <!-- ── EXPERIENCE ── -->
+          <div class="section">
+            <div class="section-title">Experience</div>
+
+            <!-- Job 1 — duplicate this block for more jobs -->
+            <div class="job">
+              <div class="job-title">[Your Job Title]</div>  <!-- ← edit -->
+              <div class="job-meta">
+                <span class="job-org">[Organisation Name]</span>  <!-- ← edit -->
+                <span class="sep">·</span>
+                <span>[MM/YYYY – Present]</span>  <!-- ← edit dates -->
+                <span class="sep">·</span>
+                <span>[Location]</span>  <!-- ← edit location -->
+              </div>
+              <ul>
+                <!-- ↓ Edit / add / remove bullet points -->
+                <li>Describe a key responsibility or achievement here.</li>
+                <li>Use action verbs and quantify impact where possible.</li>
+                <li>Example: Developed a web-based system that improved process efficiency by X%.</li>
+              </ul>
+            </div>
+
+            <!-- Job 2 — uncomment and fill in when needed
+            <div class="job">
+              <div class="job-title">[Second Role]</div>
+              <div class="job-meta">
+                <span class="job-org">[Organisation]</span>
+                <span class="sep">·</span>
+                <span>[MM/YYYY – MM/YYYY]</span>
+                <span class="sep">·</span>
+                <span>[Location]</span>
+              </div>
+              <ul>
+                <li>Bullet one.</li>
+                <li>Bullet two.</li>
+              </ul>
+            </div>
+            -->
+          </div>
+
+          <!-- ── TRAINING / COURSES ── -->
+          <div class="section">
+            <div class="section-title">Training / Courses</div>
+            <div class="courses-grid">
+
+              <!-- Course 1 — duplicate for more -->
+              <div class="course-item">
+                <div class="course-name">[Course Name]</div>  <!-- ← edit -->
+                <div class="course-meta">Issuing Institution: [Name]<br>Year: [YYYY]</div>  <!-- ← edit -->
+              </div>
+
+              <!-- Course 2 -->
+              <div class="course-item">
+                <div class="course-name">[Course Name]</div>
+                <div class="course-meta">Issuing Institution: [Name]<br>Year: [YYYY]</div>
+              </div>
+
+              <!-- Course 3 -->
+              <div class="course-item">
+                <div class="course-name">[Course Name]</div>
+                <div class="course-meta">Issuing Institution: [Name]<br>Year: [YYYY]</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ── STRENGTHS ── -->
+          <div class="section">
+            <div class="section-title">Strengths</div>
+
+            <!-- Strength 1 — duplicate for more -->
+            <div class="strength">
+              <div class="strength-name">
+                <div class="strength-icon">⭐</div>
+                Problem Solving  <!-- ← edit -->
+              </div>
+              <!-- ↓ Edit description -->
+              <p>Approaches complex technical challenges systematically, finding effective and innovative solutions.</p>
+            </div>
+
+            <div class="strength">
+              <div class="strength-name">
+                <div class="strength-icon">✔</div>
+                Continuous Learning
+              </div>
+              <p>Committed to staying current with emerging technologies and best practices in IT.</p>
+            </div>
+
+            <div class="strength">
+              <div class="strength-name">
+                <div class="strength-icon">🔧</div>
+                Technical Aptitude
+              </div>
+              <p>Strong grasp of programming fundamentals and IT concepts, with hands-on project experience.</p>
+            </div>
+
+          </div>
+
+        </div><!-- /left -->
+
+
+        <!-- ════════════════════════════════
+             RIGHT COLUMN
+        ════════════════════════════════ -->
+        <div class="right">
+
+          <!-- ── EDUCATION ── -->
+          <div class="section">
+            <div class="section-title">Education</div>
+
+            <div class="edu-item">
+              <div class="edu-degree">Bachelor of Science in Information Technology</div>  <!-- ← edit -->
+              <div class="edu-school">University of Eswatini</div>  <!-- ← edit -->
+              <div class="edu-meta">
+                📅 2023 – Present<br>  <!-- ← edit year -->
+                📍 Kwaluseni, Eswatini<br>
+                Student ID: 202305050<br>
+                Faculty of Science &amp; Engineering
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ── SCHOLARSHIP ── -->
+          <div class="section">
+            <div class="section-title">Scholarship</div>
+            <div class="award-name">Pre-Service Tertiary Education Award</div>
+            <div class="edu-school">Ministry of Labour &amp; Social Security</div>
+            <div class="edu-meta">📅 2022/23 Academic Year</div>
+            <div class="award-body">
+              Eswatini Government scholarship awarded on the basis of academic merit for pursuing a degree in Information Technology.
+            </div>
+            <div class="award-ref">Ref: MOLSS/AM/25 &nbsp;·&nbsp; Student No. 175460339</div>
+          </div>
+
+          <!-- ── LANGUAGES ── -->
+          <div class="section">
+            <div class="section-title">Languages</div>
+
+            <!-- Language 1 — duplicate for more -->
+            <div class="lang-item">
+              <span class="lang-name">siSwati</span>  <!-- ← edit language -->
+              <div class="lang-level">
+                Native
+                <div class="dots">
+                  <!-- ● filled = proficient  ○ empty = partial. 5 dots total -->
+                  <div class="dot filled"></div>
+                  <div class="dot filled"></div>
+                  <div class="dot filled"></div>
+                  <div class="dot filled"></div>
+                  <div class="dot filled"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="lang-item">
+              <span class="lang-name">English</span>
+              <div class="lang-level">
+                Proficient
+                <div class="dots">
+                  <div class="dot filled"></div>
+                  <div class="dot filled"></div>
+                  <div class="dot filled"></div>
+                  <div class="dot filled"></div>
+                  <div class="dot empty"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ── SKILLS ── -->
+          <div class="section">
+            <div class="section-title">Skills</div>
+            <div class="skills-grid">
+              <!-- ↓ Edit, add, or remove skill tags freely -->
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">HTML &amp; CSS</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">Databases</span>
+              <span class="skill-tag">Networks</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Linux</span>
+            </div>
+          </div>
+
+          <!-- ── INTERESTS ── -->
+          <div class="section">
+            <div class="section-title">Interests</div>
+
+            <!-- Interest — duplicate for more -->
+            <div class="interest">
+              <div class="interest-title">Software Development</div>  <!-- ← edit -->
+              <p>Passionate about building efficient, user-focused applications.</p>
+            </div>
+
+            <div class="interest">
+              <div class="interest-title">Cybersecurity</div>
+              <p>Keen interest in ethical hacking and network security principles.</p>
+            </div>
+
+            <div class="interest">
+              <div class="interest-title">AI &amp; Machine Learning</div>
+              <p>Exploring the potential of AI to transform industries in Eswatini.</p>
+            </div>
+
+          </div>
+
+        </div><!-- /right -->
+      </div><!-- /body -->
+
+    </div><!-- /page -->
+  </div><!-- /outer -->
+
+</body>
+</html>
