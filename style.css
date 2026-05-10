@@ -130,12 +130,22 @@ h1 {
 /* ========== TWO-COLUMN ========== */
 .two-column {
   display: flex;
-  gap: 44px;
+  gap: 0;
   align-items: flex-start;
 }
 
-.left  { flex: 2.1; min-width: 0; }
-.right { flex: 1;   min-width: 0; }
+.left  {
+  flex: 2.1;
+  min-width: 0;
+  padding-right: 36px;
+  border-right: 1px solid var(--rule-color);
+}
+
+.right {
+  flex: 1;
+  min-width: 0;
+  padding-left: 32px;
+}
 
 /* ========== SECTION ========== */
 .section {
@@ -357,10 +367,36 @@ li:last-child {
   margin-bottom: 12px;
 }
 
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .footer span {
   font-size: 0.75em;
   color: var(--text-muted);
   letter-spacing: 0.5px;
+}
+
+.print-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75em;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--accent-light);
+  border: 1px solid rgba(184,134,11,0.3);
+  border-radius: 3px;
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.print-btn:hover {
+  background: #EDD99A;
 }
 
 /* ========== RESPONSIVE ========== */
@@ -380,6 +416,18 @@ li:last-child {
   .two-column {
     flex-direction: column;
     gap: 0;
+  }
+
+  .left {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--rule-color);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+
+  .right {
+    padding-left: 0;
   }
 
   .edu-header {
@@ -420,9 +468,17 @@ li:last-child {
     font-size: 2.1em;
   }
 
-  a {
-    color: var(--navy-mid);
-    text-decoration: none;
+  .print-btn {
+    display: none;
+  }
+
+  .left {
+    padding-right: 28px;
+    border-right: 1px solid #ccc;
+  }
+
+  .right {
+    padding-left: 28px;
   }
 
   .skill {
@@ -434,8 +490,11 @@ li:last-child {
     background: #F8F8F8;
   }
 
+  a {
+    color: var(--navy-mid);
+    text-decoration: none;
+  }
   .exp-item,
-  .edu-item,
   .cert-item {
     page-break-inside: avoid;
   }
