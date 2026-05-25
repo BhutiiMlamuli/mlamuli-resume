@@ -7,7 +7,513 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <style>
+/* ========== RESET ========== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========== DESIGN TOKENS ========== */
+:root {
+  --navy:       #0B2240;
+  --navy-mid:   #1A3A5C;
+  --accent:     #B8860B;
+  --accent-light: #F5EDD6;
+  --text-dark:  #0F1A27;
+  --text-mid:   #374151;
+  --text-muted: #6B7280;
+  --border:     #D1D5DB;
+  --bg-page:    #F4F6F9;
+  --bg-card:    #FFFFFF;
+  --rule-color: #CBD5E1;
+}
+
+/* ========== BASE ========== */
+body {
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-mid);
+  background: var(--bg-page);
+  padding: 40px 20px;
+}
+
+a {
+  color: var(--navy-mid);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.88em;
+  background: #F1F5F9;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--navy);
+}
+
+/* ========== CONTAINER ========== */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border-radius: 4px;
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.07),
+    0 8px 32px rgba(11,34,64,0.10);
+  padding: 52px 56px 44px;
+}
+
+/* ========== HEADER ========== */
+.header {
+  margin-bottom: 28px;
+  border-left: 4px solid var(--accent);
+  padding-left: 20px;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.65em;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.tagline {
+  font-size: 0.92em;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.3px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-size: 0.78em;
+  letter-spacing: 1px;
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 0;
+  font-size: 0.86em;
+  color: var(--text-muted);
+}
+
+.contact span,
+.contact a {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.contact a {
+  color: var(--navy-mid);
+}
+
+.dot {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--rule-color);
+  margin: 0 10px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ========== DIVIDER ========== */
+.divider {
+  height: 1px;
+  background: var(--rule-color);
+  margin: 0 0 28px;
+}
+
+/* ========== TWO-COLUMN ========== */
+.two-column {
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+
+.left  {
+  flex: 2.1;
+  min-width: 0;
+  padding-right: 36px;
+  border-right: 1px solid var(--rule-color);
+}
+
+.right {
+  flex: 1;
+  min-width: 0;
+  padding-left: 32px;
+}
+
+/* ========== SECTION ========== */
+.section {
+  margin-bottom: 26px;
+}
+
+.full-width {
+  margin-bottom: 22px;
+}
+
+h2.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.72em;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  margin-bottom: 14px;
+  border-bottom: 1.5px solid var(--accent);
+}
+
+/* ========== SUMMARY ========== */
+.summary-text {
+  font-size: 0.93em;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+/* ========== EXPERIENCE / PROJECTS ========== */
+.exp-item {
+  margin-bottom: 20px;
+}
+
+.exp-item:last-child {
+  margin-bottom: 0;
+}
+
+.exp-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 7px;
+}
+
+.exp-header strong {
+  font-size: 0.96em;
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+.tech-stack {
+  font-size: 0.78em;
+  color: var(--text-muted);
+  font-weight: 400;
+  font-style: italic;
+}
+
+ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 5px;
+  font-size: 0.89em;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+/* ========== EDUCATION ========== */
+.edu-item {
+  margin-bottom: 10px;
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 3px;
+}
+
+.edu-header strong {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.edu-date {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.edu-institution {
+  font-size: 0.88em;
+  color: var(--navy-mid);
+  margin-bottom: 7px;
+  font-weight: 500;
+}
+
+/* ========== CERTIFICATIONS ========== */
+.cert-item {
+  font-size: 0.89em;
+  color: var(--text-mid);
+  margin-bottom: 8px;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent-light);
+}
+
+.cert-note {
+  display: block;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.cert-meta {
+  display: block;
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ========== SKILL CATEGORIES ========== */
+.skill-category {
+  margin-bottom: 11px;
+}
+
+.skill-label {
+  display: block;
+  font-size: 0.74em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 5px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill {
+  background: var(--accent-light);
+  color: var(--navy);
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 0.8em;
+  font-weight: 500;
+  border: 1px solid rgba(184,134,11,0.18);
+  transition: background 0.15s;
+}
+
+.skill:hover {
+  background: #EDD99A;
+}
+
+/* ========== PLAIN LIST ========== */
+.plain-list {
+  padding-left: 16px;
+  list-style: disc;
+}
+
+.plain-list li {
+  margin-bottom: 4px;
+  font-size: 0.88em;
+}
+
+/* ========== LANGUAGES ========== */
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.88em;
+  padding: 5px 0;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.language-item:last-child {
+  border-bottom: none;
+}
+
+.lang-name {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.lang-level {
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+/* ========== REFERENCE ========== */
+.reference-text {
+  font-size: 0.86em;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.footer-line {
+  height: 1px;
+  background: var(--rule-color);
+  margin-bottom: 12px;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer span {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.print-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75em;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--accent-light);
+  border: 1px solid rgba(184,134,11,0.3);
+  border-radius: 3px;
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.print-btn:hover {
+  background: #EDD99A;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 720px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  .container {
+    padding: 28px 22px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .two-column {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .left {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--rule-color);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+  }
+
+  .right {
+    padding-left: 0;
+  }
+
+  .edu-header {
+    flex-direction: column;
+  }
+
+  .contact {
+    gap: 4px;
+  }
+
+  .dot {
+    display: none;
+  }
+
+  .contact span,
+  .contact a {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* ========== PRINT ========== */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+    font-size: 12px;
+  }
+
+  .container {
+    box-shadow: none;
+    padding: 24px 28px;
+    border-radius: 0;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 2.1em;
+  }
+
+  .print-btn {
+    display: none;
+  }
+
+  .left {
+    padding-right: 28px;
+    border-right: 1px solid #ccc;
+  }
+
+  .right {
+    padding-left: 28px;
+  }
+
+  .skill {
+    border: 1px solid #ccc;
+    background: #F8F8F8;
+  }
+
+  .skill:hover {
+    background: #F8F8F8;
+  }
+
+  a {
+    color: var(--navy-mid);
+    text-decoration: none;
+  }
+  .exp-item,
+  .cert-item {
+    page-break-inside: avoid;
+  }
+
+  .section-title {
+    page-break-after: avoid;
+  }
+}
+  </style>
 </head>
 <body>
   <div class="container">
@@ -196,15 +702,15 @@
             <strong>Responsive Web Design</strong>
             <span class="cert-meta">freeCodeCamp &nbsp;·&nbsp; May 2024 &nbsp;·&nbsp; <a href="https://freecodecamp.org/certification/bhutiimlamuli/responsive-web-design" target="_blank">Verify</a></span>
           </div>
-          <!-- New: HP LIFE Data Science & Analytics -->
+          <!-- HP LIFE Data Science & Analytics with verification link -->
           <div class="cert-item">
             <strong>Data Science &amp; Analytics</strong>
-            <span class="cert-meta">HP LIFE &nbsp;·&nbsp; May 21, 2026</span>
+            <span class="cert-meta">HP LIFE &nbsp;·&nbsp; May 21, 2026 &nbsp;·&nbsp; <a href="https://www.life-global.org/course/344-data-science-and-analytics" target="_blank">Verify</a></span>
           </div>
-          <!-- New: IBM Data Science Tools -->
+          <!-- IBM Data Science Tools with verification link -->
           <div class="cert-item">
             <strong>Data Science Tools (DS0105EN)</strong>
-            <span class="cert-meta">IBM SkillsBuild &nbsp;·&nbsp; May 25, 2026</span>
+            <span class="cert-meta">IBM SkillsBuild &nbsp;·&nbsp; May 25, 2026 &nbsp;·&nbsp; <a href="https://courses.yl-ptech.skillsnetwork.site/certificates/a5a1d0cff00c47fda036a4ab46450f1d" target="_blank">Verify</a></span>
           </div>
         </section>
 
@@ -219,7 +725,7 @@
           </ul>
         </section>
 
-        <!-- REFERENCE - Updated to only state "Available upon request" -->
+        <!-- REFERENCE - Simplified as requested -->
         <section class="section">
           <h2 class="section-title">Reference</h2>
           <p class="reference-text">Available upon request.</p>
